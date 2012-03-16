@@ -1,0 +1,22 @@
+ 
+ <% flash.each do |key, value| %>
+          <div class="flash <%= key %>"><p class="o1">أهلاً بك اخي العزيز تمت العملية  بنجاح</p> </div>
+        <% end %>
+        <center>
+
+<table class="profile" summary="Profile information">
+  <tr>
+    <td class="main">
+                
+<%= will_paginate %>
+
+      <% unless @user.microposts.empty? %>
+        <table class="microposts" summary="User microposts">
+          <%= render @microposts %>
+        </table>
+
+      <% end %>
+      <%= will_paginate %>
+
+    </td>
+</table>

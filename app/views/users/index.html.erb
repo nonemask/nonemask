@@ -1,0 +1,48 @@
+<table class="profile">
+  <tr>
+   
+    <td class="sidebar1 round">
+     <strong>  التسجيل</strong>
+     
+    </td>
+  </tr>
+</table><br /><br />
+
+<table class="profile" summary="Profile information">
+  <tr>
+    <td class="main">
+                <%= will_paginate %>
+        <table class="microposts" summary="User microposts">         	  <% @users.each do |user| %>
+
+        	<tr>
+       
+   
+  <td class="micropost">
+<span class="content"><h5><%= link_to user.name, user %></h5></span> 
+<span class="content">ID : <%=  user.id %></span> <br />
+<span class="content">Microposts : <%= link_to user.microposts.count, user_microposts_path(user) %></span><br /> 
+<span class="content">  <% if admin_check? && !current_user?(user) %>
+    | <%= link_to "delete", user, method: :delete, 
+                                  confirm: "You sure?" %>
+                                  <% if admin_check?  %>
+                                    | <%= link_to "New", new_user_micropost_path(user), 
+                                  confirm: "You sure?" %>
+  <% end %>
+  <% end %></span> 
+ <span class="timestamp">
+      Posted <%= time_ago_in_words(user.created_at) %> ago.||<%= user.created_at %>
+    </span>
+ 
+  </td>
+   
+    	<td class="gravatar">
+   		
+		        <%= link_to gravatar_for(user), user  %><br />
+  </td>
+  </tr> <% end %>
+  
+        </table>                <%= will_paginate %>
+
+    </td>
+  
+</table>

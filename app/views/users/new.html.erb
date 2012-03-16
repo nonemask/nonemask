@@ -1,0 +1,47 @@
+<table class="profile">
+  <tr>
+   
+    <td class="sidebar1 round">
+     <strong>  التسجيل</strong>
+     
+    </td>
+  </tr>
+</table><br /><br />
+<center>
+<%= form_for(@user) do |f| %>
+  <div class="field">
+    <%= f.label :name, "الاسم" %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :email, "الايميل" %><br />
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :password, "كلمة المرور" %><br />
+    <%= f.password_field :password %>
+  </div>
+  <div class="field">
+    <%= f.label :password_confirmation, "اعد كلمة المرور" %><br />
+    <%= f.password_field :password_confirmation %>
+  </div>
+  <div class="actions">
+    <%= f.submit "تسجيل" %>
+  </div>
+  <br />  <br />
+<% end %>
+
+<% if @user.errors.any? %>
+  <div id="error_explanation">
+    
+    <b>تاكد اخي العزيز من الاخطاء التالية</b>
+    <ul>
+   
+      <li> فارغ، يرجى ملء احد الحقول -</li>
+      <li>الايميل غير صحيح او مكرر -</li>
+      <li> كلمة المرور لا توافق الاعادة -</li>
+      <li> كلمة المرور ليست بين 6 الى 40 حرف  -</li>
+ 
+    </ul>
+  </div>
+<% end %>

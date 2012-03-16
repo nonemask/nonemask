@@ -1,0 +1,31 @@
+
+<table class="profile">
+  <tr>
+   
+    <td class="sidebar1 round">
+     <strong>  تسجيل الدخول</strong>
+     
+    </td>
+  </tr>
+</table><br /><br />
+
+<%= form_for(:session, url: sessions_path) do |f| %>
+  <div class="field">
+    <%= f.label :email ,"الايميل" %><br />
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :password ,"الباسورد" %><br />
+    <%= f.password_field :password %>
+  </div>
+  <div class="actions">
+    <%= f.submit "دخول" %>
+  </div>
+<% end %>
+
+<p>عضو جديد ؟ <%= link_to "سجل الآن ", signup_path %></p>
+
+<br />
+ <% flash.each do |key, value| %>
+          <div class="flash <%= key %>"><p class="o1">المعلومات المدخولة لاتسمح بلدخول</p> </div>
+        <% end %>

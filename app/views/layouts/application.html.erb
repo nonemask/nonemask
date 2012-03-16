@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>oo</title>
+    <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->    
+    <%= stylesheet_link_tag 'screen', media: 'screen' %>
+     <%= stylesheet_link_tag 'custom', media: 'screen' %>
+    <%= stylesheet_link_tag 'print',  media: 'print' %>
+    <!--[if lt IE 8]><%= stylesheet_link_tag 'blueprint/ie' %><![endif]-->
+        <%= javascript_include_tag 'nicEdit' -%>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+  </head>
+  <script type="text/javascript">
+ 
+$(document).ready(function(){
+
+ $('nav').fadeIn(100);
+  $('div').fadeIn(120);
+});
+ </script>
+  <body style="">
+    <div class="container"  >
+      <header>
+        <%= image_tag("logo.png", alt: "Sample App", class: "round") %>
+
+      </header>
+      <section>
+      	 <nav class="round" style="display:none;">
+      <ul id="menu">
+      	
+	<li><%= link_to "الرئيسية", 	root_path %></li>
+	<li><%= link_to "الصوتيـات", 	sounds_path %></li>
+		<li><%= link_to "البــوم الصور", 	studionames_path %></li>
+
+  <% if signed_in? %>
+  <% if admin_check?   %>
+  <li><%= link_to "حكم اهل البيت", 	hekoms_path %></li>
+	<li><%= link_to "الاعضـاء", 	users_path %></li>
+	<li><%= link_to "رسـائل الاعضاء" , 	admin_user_microposts_path(current_user) %></li>
+		<% end %>
+        <li><%= link_to "الملف الشخصي", current_user %></li>
+      <% end %>
+      <% if signed_in? %>
+       <li><%= link_to "ارسل رسالة ", new_user_micropost_path(current_user) if !admin_check?%></li>
+       <li><%= link_to "رسائلي ", user_microposts_path(current_user) if !admin_check?%></li>
+        <li><%= link_to "تسجيل الخروج", signout_path, method: :delete , confirm: "You sure?"%></li>
+        
+      <% else %>
+        <li><%= link_to "تسجيل الدخول", signin_path %></li>
+      <% end %>
+</ul>
+ 
+ <br />
+   <ul id="menu">
+	<li>Home</li>
+
+</ul>
+
+<br />
+
+       </nav> 
+     
+       <section class="round" >
+       	<div style="display:none;">
+       	<%= yield %>	
+       	</div>
+        
+     
+      </section>
+      </section>
+     
+      <footer>
+ <h5>by ooooooooooo</h5>
+  <%= debug(params) %>
+</footer>
+    </div>
+    
+  </body>
+</html>
