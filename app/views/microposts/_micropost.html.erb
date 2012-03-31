@@ -1,23 +1,22 @@
+
 <tr>
 	<%
 	 @avatar=User.find_by_name(micropost.name)|| nil
 	  %>
 	
   <td class="micropost">
-  	    <span class="content"><h5><%= link_to micropost.name , @avatar %></h5></span>
-
-    <span class="content"><%= wrap(micropost.content) %></span>
-    <span class="timestamp">
+    <span class="content microposts" style="text-align: right;"><%= strip_tags(wrap(micropost.content)) %></span>
+    <span class="timestamp " style="text-align: right;">
       Posted <%= time_ago_in_words(micropost.created_at) %> ago.||<%= micropost.created_at %>
-    </span>
+    
     <% if admin_check? || current_user?(@user) %>
-    | <%= link_to "delete", [@avatar ,micropost], method: :delete, 
+    | <%= link_to "حذف ", [@avatar ,micropost], method: :delete, 
                                   confirm: "You sure?" %>
                                     
   <% end %>
     <% if admin_check? || !current_user?(@user) %>
-                                    | <%= link_to "New", new_user_micropost_path(@avatar), 
-                                  confirm: "You sure?" %>
+                                    | <%= link_to "ارسال ", new_user_micropost_path(@avatar), 
+                                  confirm: "You sure?" %></span>
   <% end %>
   </td>
   <td class="gravatar">

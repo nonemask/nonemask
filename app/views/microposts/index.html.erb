@@ -1,52 +1,54 @@
+
+ <% if signed_in? %>
  
  <% flash.each do |key, value| %>
           <div class="flash <%= key %>"><p class="o1">أهلاً بك اخي العزيز تمت العملية  بنجاح</p> </div>
         <% end %>
         <center>
-<% if signed_in? %>
-  <table class="front" summary="For signed-in users">
-    <tr>
-      <td class="main">
-     
-        <h1 class="micropost">What's up?</h1>
-<% end %>
-      </td>
- 
-    </tr>
-  </table>
-        <table class="profile">
+<div class="profile1 ">
+	
+	<div id="e">
+<table class="profile " summary="Profile information">
   <tr>
     <td class="main">
-      <h3>
-       	<%= gravatar_for @user %>
-
-      </h3>
-    </td>
-    <td class="sidebar round">
-      <%= @user.name %><strong> : الاسم</strong> <br />
-   <strong>  عدد الرسائل : <%= @user.microposts.count %> </strong> <br />
-    </td>
-  </tr>
-</table>
-<br />
-<br />
-<br />
-<table class="profile" summary="Profile information">
-  <tr>
-    <td class="main">
-    <%= will_paginate %>
+   
 
       <% unless @user.microposts.empty? %>
         <table class="microposts" summary="User microposts">
-        	<tr><td>
-
-        	</td></tr>
+        	
           <%= render @microposts %>
         </table>
         <%= will_paginate @microposts %>
       <% end %>
-      <%= will_paginate %>
-
     </td>
+  <td> <table class="front" summary="For signed-in users">
+  	
+    	<div class="ds">
+    <tr>
+      <td class="main">
   
-</table>
+<%= form_for [@user,@micropost] do |f| %>
+  <div class="field">
+<%= f.hidden_field :name , :size=>"46" ,:value=>current_user.name%>
+  </div>
+  <div class="field">
+    <%= f.text_area :content , :size=>"46*44"%>
+  </div>
+  <div class="actions">
+    <%= f.submit "Submit",:class=>"btn" %>
+  </div>
+<% end %><% end %>
+      </td>
+    </tr>
+    <tr>
+ <td class="profile1 pull-right">   <%= @user.name %><strong> : الاسم</strong> <br />
+   <strong>  عدد الرسائل : <%= @user.microposts.count %> </strong> <br />
+
+	<%= link_to "تحديـث بيانـاتك", edit_user_path(@user) %>
+	</td></tr>
+  
+   </div>
+  </table></td>
+</table></div>
+</div>
+<br />

@@ -21,6 +21,9 @@ end
   match '/signin',  to: 'sessions#new'
   match '/signout', to: 'sessions#destroy'
   match '/signup', to: 'users#new'
+   match '/aboutus', to: 'pages#aboutus'
+   
+   match '/services', to: 'pages#services'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

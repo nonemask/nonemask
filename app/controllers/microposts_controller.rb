@@ -13,7 +13,8 @@ class MicropostsController < ApplicationController
   end
   def index
       @microposts = @user.microposts.paginate(:page => params[:page],:per_page => 4)
-   
+      @micropost = User.find(params[:user_id]).microposts.build if signed_in?
+
     if User.exists?(params[:user_id])
         @user = User.find(params[:user_id])
       else
@@ -22,6 +23,13 @@ class MicropostsController < ApplicationController
   
   end
   def new
+       @microposts = @user.microposts.paginate(:page => params[:page],:per_page => 4)
+   
+    if User.exists?(params[:user_id])
+        @user = User.find(params[:user_id])
+      else
+        redirect_back_or(root_path)
+      end
            @micropost = User.find(params[:user_id]).microposts.build if signed_in?
            
   end
@@ -31,8 +39,10 @@ class MicropostsController < ApplicationController
     
   end
       def destroy
-      
+        
     @user.microposts.find(params[:id]).destroy
+    
+    @user.feeds.find_by_micropost_id(params[:id]).destroy
     flash[:success] = "User destroyed."
     redirect_to user_microposts_path(@user)
   end
@@ -48,7 +58,8 @@ class MicropostsController < ApplicationController
           flash[:success] = "Profile updated"
           redirect_to user_microposts_path(@user)
     else
-          render 'new'
+          flash[:error] = ""
+          redirect_to user_microposts_path(@user)
     end
   end
 

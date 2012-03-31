@@ -6,6 +6,7 @@ gem "heroku"
  gem 'annotate', '~> 2.4.1.beta'
  gem "will_paginate", "~> 3.0.2"
 gem 'aws-s3' 
+gem 'bootstrap-sass'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 gem 'paperclip'
@@ -15,7 +16,8 @@ group :development, :test do
   gem 'sqlite3'
 end
 group :production do
-  gem 'pg'
+  #gem 'pg'
+gem 'sqlite3'
 end
 
 # Gems used only for assets and not required

@@ -1,37 +1,27 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>oo</title>
-    <!--[if lt IE 9]>
-    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->    
-    <%= stylesheet_link_tag 'screen', media: 'screen' %>
-     <%= stylesheet_link_tag 'custom', media: 'screen' %>
-    <%= stylesheet_link_tag 'print',  media: 'print' %>
-    <!--[if lt IE 8]><%= stylesheet_link_tag 'blueprint/ie' %><![endif]-->
-        <%= javascript_include_tag 'nicEdit' -%>
+    <title></title>
+    <%= stylesheet_link_tag    "custom1", media: "all" %>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
+    <%= render 'layouts/shim' %>    
   </head>
-  <script type="text/javascript">
- 
-$(document).ready(function(){
-
- $('nav').fadeIn(100);
-  $('div').fadeIn(120);
-});
- </script>
-  <body style="">
-    <div class="container"  >
-      <header>
-        <%= image_tag("logo.png", alt: "Sample App", class: "round") %>
-
-      </header>
-      <section>
-      	 <nav class="round" style="display:none;">
-      <ul id="menu">
-      	
-	<li><%= link_to "الرئيسية", 	root_path %></li>
+  
+  <body>
+  	      <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %>"><%= value %></div>
+      <% end %>
+    <%= render 'layouts/header' %>
+    <div id="back" class="container">
+    	<header id="x" class="navbar" >
+    <div class="container">
+            <span class="nav pull-right">
+<h3 id="logo1">القــائم</h3>
+</span>	
+      <nav>
+        <ul class="nav pull-left">
+         <li><%= link_to "الرئيسية", 	root_path %></li>
 	<li><%= link_to "الصوتيـات", 	sounds_path %></li>
 		<li><%= link_to "البــوم الصور", 	studionames_path %></li>
 
@@ -52,31 +42,16 @@ $(document).ready(function(){
         <li><%= link_to "تسجيل الدخول", signin_path %></li>
       <% end %>
 </ul>
- 
- <br />
-   <ul id="menu">
-	<li>Home</li>
+      </nav>
+              <span class="nav pull-right">
 
-</ul>
+</span>
+</header>
 
-<br />
 
-       </nav> 
-     
-       <section class="round" >
-       	<div style="display:none;">
-       	<%= yield %>	
-       	</div>
-        
-     
-      </section>
-      </section>
-     
-      <footer>
- <h5>by ooooooooooo</h5>
-  <%= debug(params) %>
-</footer>
+      <%= yield %>
+      <%= render 'layouts/footer' %>
+      <%= debug(params) %>
     </div>
-    
   </body>
 </html>
