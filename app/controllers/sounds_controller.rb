@@ -1,17 +1,22 @@
+
+
+
+
+
 class SoundsController < ApplicationController
     before_filter :signed_in_user, only: [:new, :edit, :update,:destroy]
   before_filter :admin_check, only: [:new, :edit, :update,:destroy]
-
+  
      def destroy
  Sound.find(params[:id]).destroy
     flash[:success] = "User destroyed."
     redirect_to sounds_path
-  end
+params[:id]  end
   def index
-        @sound = Sound.paginate(:page => params[:page],:per_page => 3)
+        @sound = Sound.paginate(:page => params[:page],:per_page => 5)
   end
 def edit
-    @sound = Sound.find(params[:id])
+   @sound = Sound.find(params[:id])
    @sound.asets.build
   end
   
@@ -24,14 +29,18 @@ def edit
       render 'edit'
     end
   end
-  
+ 
   def show
-   def download(x)
-      send_file x
-  end
- @sound = Sound.find(params[:id])
- @sound1=@sound.lists.paginate(:page => params[:page],:per_page => 3)
 
+
+      if Sound.exists?(params[:id]) 
+     @sound = Sound.find(params[:id])
+           @sound1=@sound.lists.paginate(:page => params[:page],:per_page => 1)
+
+    else
+      redirect_to root_path
+    
+end
   end
    def create
     @sound = Sound.new(params[:sound]) 
@@ -49,7 +58,9 @@ def edit
     @sound.asets.build
   end
     private
-
+ def nonnegative_float?
+    !!match(/\A\+?\d+(?:\.\d+)?\Z/)
+  end
     def signed_in_user
       redirect_to  signin_path, notice: "Please sign in." unless signed_in?
     end

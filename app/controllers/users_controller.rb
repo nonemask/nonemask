@@ -5,12 +5,15 @@ class UsersController < ApplicationController
   
   def new
     @user = User.new
+    
   end
   def index
     @users = User.paginate(:page => params[:page],:per_page => 3)
     
   end
   def show
+    @user = User.find(params[:id])
+   redirect_to  user_microposts_path(@user)
             @micropost1 = Micropost.new if signed_in?
       @id=params[:id]
        @user = User.find(params[:id])

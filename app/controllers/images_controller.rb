@@ -1,6 +1,6 @@
 class ImagesController < ApplicationController
     before_filter :signed_in_user, only: [:new, :edit, :update,:destroy]
-  before_filter :admin_check, only: [:new, :edit, :update,:destroy]
+  before_filter :admin_check, only: [:new, :edit, :update,:destroy,:index,:show]
 
      def destroy
  Studioname.find(params[:id]).destroy

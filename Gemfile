@@ -7,6 +7,7 @@ gem "heroku"
  gem "will_paginate", "~> 3.0.2"
 gem 'aws-s3' 
 gem 'bootstrap-sass'
+gem "recaptcha", require: "recaptcha/rails"
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 gem 'paperclip'

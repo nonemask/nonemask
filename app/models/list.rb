@@ -5,6 +5,6 @@ class List < ActiveRecord::Base
   accepts_nested_attributes_for :asetts , :allow_destroy=>true
      
 
-   validates :name, presence: true, length: { maximum: 50 }
+   validates :name, presence: true, length: { maximum: 503333 }
 
 end

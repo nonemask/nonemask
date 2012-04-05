@@ -11,7 +11,7 @@
 <%= form_for  [@sound,@album],:html => { :multipart => true } do |f| %>
   <div class="field">
     <%= f.label :name, "اسم الانشودة" %><br />
-    <%= f.text_field :name %>
+    <%= f.text_area :name %>
   </div>
  <%= f.fields_for :asetts do |aset_fields|%>
   <div class="field">

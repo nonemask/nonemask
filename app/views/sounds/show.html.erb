@@ -1,57 +1,56 @@
- 
- <% flash.each do |key, value| %>
-          <div class="flash <%= key %>"><p class="o1">أهلاً بك اخي العزيز تمت العملية  بنجاح</p> </div>
-        <% end %>
+ <div id="best">
         <center>
 
+   <div class="holder_content">
+ 
+       <section class="group7">
   <table class="front" summary="For signed-in users">
     <tr>
       <td class="main">
          </td>
  
-    </tr>
-  </table>
-        <table class="profile">
-  <tr>
     <td class="main"> <% if signed_in? %><% if admin_check? %>
-  <%= link_to "اضافة صوت",new_sound_list_path(@sound)%><% end %> <% end %>
+  <%= link_to "اضافة مواصفات",new_sound_list_path(@sound)%><% end %> <% end %>
     
     </td>
-    <td class="sidebar round" style="width: 140%;">
-      <%= @sound.name %><strong> : الاسم</strong> <br />
-   <strong> الوصف :</strong>  <%= @sound.content %> <br />
+    </tr>
+  </table>
+        <table class="o"style="text-align: center;width: 430px; color:#A9E7FF">
+  <tr>
+    <td class="sidebar round">
+      <%= @sound.name %> <br />
     </td>
-      	<td class="gravatar">
+    
+  </tr>
+</table>
+
+<br />
+  <table class="o"style="text-align: center;width: 430px; color:#A9E7FF;">
+  	<center>
+  		<h3>صور الجهاز</h3>
+  <tr>	<td class="gravatar" style="text-align: center;width: 430px; color:#A9E7FF;margin:0px auto;">
     		<% for aset in  @sound.asets%>
-    		<%= link_to image_tag(aset.image.url(:thumb)),"#"%>
+    		<%= link_to image_tag(aset.image.url(:thumb)),aset.image.url%>
     		
     		<% end %>
    		<br />
-  </td>
-  </tr>
+  </td></tr></center>
 </table>
-<br />
-<br />
-<br />
-
 <table class="profile" summary="Profile information">
   <tr>
-    <td class="main">
-                
-        <table class="microposts" summary="User microposts">  <% @sound1.each do |sound| %>
+  	  		<h3>مواصفات الجهاز</h3>
 
+    <td class="main">
+    	                 <%= will_paginate @sound1 , :class=>"apple_pagination" ,:previous_label=>"",:next_label=>""%>
+
+        <table class="microposts" summary="User microposts"style="text-align: center;width: 430px; color:#A9E7FF;"> 
+        	 <% @sound1.each do |sound| %>
         	<tr>
-       
-   
+        		
   <td class="micropost">
-<span class="content"><h5><%= link_to sound.name, [@sound,sound]%></h5></span> 
-    		<% for aset in  sound.asetts %>
-    		
-    		  <li><%= aset.music.url  %></li>
-    	
-    		<% end %>
-    	<br />
-<span class="content">   <% if signed_in? %><% if admin_check? %>
+<span class="content"><p><%= raw sound.name%></p></span> 
+  <% if signed_in? %><% if admin_check? %>
+<span class="content">   
     | <%= link_to "delete", [@sound,sound], method: :delete, 
                                   confirm: "You sure?" %>
                                   <% if admin_check?  %>
@@ -62,8 +61,35 @@
   </td>
   </td><% end %>
   </tr> 
-   <%= will_paginate @sound1 %>
         </table>               
     </td>
-  </tr>
+  </tr>    
+
  </table>
+ <br />
+   	<p style="text-align: right;"class="o">وفي حالة الاستفسارات او رغبتـكم يمكنكـم التسجيل والمتابعه  </p>
+
+	<a href="" class="e"><%= link_to "ســجل معنــا بدخولـــك" ,signin_path ,:class=>"o"%></a>
+</div>
+ </section>  
+   <section class="group6">
+   	
+   	  <%= image_tag("one1.png", :class=>"o")%>
+ 
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+	</section>
+	
+	</div>

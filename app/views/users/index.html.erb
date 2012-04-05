@@ -1,27 +1,30 @@
-<table class="profile">
+ 
+        <center>
+<div class="profile1 ">
+	
+	<div id="e">
+<table class="profile" summary="Profile information">
   <tr>
-   
-    <td class="sidebar1 round">
-     <strong>  التسجيل</strong>
-     
-    </td>
-  </tr>
-</table><br /><br />
+    <td class="main">
+
+
+      
 
 <table class="profile" summary="Profile information">
   <tr>
     <td class="main">
-                <%= will_paginate %>
+                <%= will_paginate  :class=>"apple_pagination",:previous_label=>"",:next_label=>""%>
+
         <table class="microposts" summary="User microposts">         	  <% @users.each do |user| %>
 
         	<tr>
        
    
   <td class="micropost">
-<span class="content"><h5><%= link_to user.name, user %></h5></span> 
-<span class="content">ID : <%=  user.id %></span> <br />
-<span class="content">Microposts : <%= link_to user.microposts.count, user_microposts_path(user) %></span><br /> 
-<span class="content">  <% if admin_check? && !current_user?(user) %>
+<span class="content o" style="text-align: right;"><h5 style="width: 500px;"><%= link_to user.name, user %></h5></span> 
+<span class="content microposts" style="text-align: right;">العضوية : <%=  user.id %></span> 
+<span class="content microposts" style="text-align: right;">الرسائل : <%= link_to user.microposts.count, user_microposts_path(user) %></span> 
+<spanclass="content microposts" style="text-align: right;">  <% if admin_check? && !current_user?(user) %>
     | <%= link_to "delete", user, method: :delete, 
                                   confirm: "You sure?" %>
                                   <% if admin_check?  %>
@@ -30,7 +33,7 @@
   <% end %>
   <% end %></span> 
  <span class="timestamp">
-      Posted <%= time_ago_in_words(user.created_at) %> ago.||<%= user.created_at %>
+       <%= time_ago_in_words(user.created_at) %>  << <%= user.created_at %>
     </span>
  
   </td>
@@ -41,8 +44,9 @@
   </td>
   </tr> <% end %>
   
-        </table>                <%= will_paginate %>
+        </table>              
+         <%= will_paginate  :class=>"apple_pagination",:previous_label=>"",:next_label=>""%>
 
     </td>
-  
 </table>
+

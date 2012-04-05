@@ -1,13 +1,12 @@
 Oo::Application.routes.draw do
 
- resources :sounds do
+ resources :computers, :as => "sounds",:controller => "sounds" do
     resources :lists ,:controller => "albums"
  end
   resources :images,:as => "studionames" do
     resources :nums ,:as => "studios"
  end
  resources :hekoms
-
  resources :sessions, only: [:new, :create, :destroy]
 resources :users do
   
@@ -17,13 +16,24 @@ resources :users do
 
 end
   root to: 'pages#index'
-  # match '*a', :to => 'pages#index'
   match '/signin',  to: 'sessions#new'
   match '/signout', to: 'sessions#destroy'
   match '/signup', to: 'users#new'
    match '/aboutus', to: 'pages#aboutus'
    
+   match '/services/9', to: 'pages#three3'
+   match '/services/8', to: 'pages#three2'
+  match '/services/7', to: 'pages#three1'
+   match '/services/6', to: 'pages#two2'
+   match '/services/5', to: 'pages#two1'
+   match '/services/4', to: 'pages#one4'
+   match '/services/3', to: 'pages#one3'
+   match '/services/2', to: 'pages#one2'
+   match '/services/1', to: 'pages#one1'
    match '/services', to: 'pages#services'
+   
+  match '*a', :to => 'pages#index'
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

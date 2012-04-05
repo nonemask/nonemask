@@ -1,31 +1,30 @@
-
-<table class="profile">
+ 
+        <center>
+<div class="profile1 " style="margin: 0px auto;">
+	
+	<div id="e" class="micropost"style="width: 500px;margin: 0px auto;>
+<table class="profile microposts" summary="Profile information" style="width: 500px;margin: 0px auto;">
   <tr>
-   
-    <td class="sidebar1 round">
-     <strong>  تسجيل الدخول</strong>
-     
-    </td>
-  </tr>
-</table><br /><br />
+    <td class="micropost" style="width: 500px;margin: 0px auto; float: right;">
+
 
 <%= form_for(:session, url: sessions_path) do |f| %>
-  <div class="field">
-    <%= f.label :email ,"الايميل" %><br />
-    <%= f.text_field :email %>
+  <div class="field"style="width: 500px;margin: 0px auto;">
+    <%= f.label :email ,"الايميل",:class=>"btn btn-large btn-primary" %><br />
+    <%= f.text_field :email ,:class=>"text1"%>
   </div>
-  <div class="field">
-    <%= f.label :password ,"الباسورد" %><br />
-    <%= f.password_field :password %>
+  <div class="field"style="width: 500px;margin: 0px auto;">
+    <%= f.label :password ,"الباسورد",:class=>"btn btn-large btn-primary" %><br />
+    <%= f.password_field :password ,:class=>"text1"%>
   </div>
-  <div class="actions">
-    <%= f.submit "دخول" %>
+  <div class="actions"style="width: 500px;margin: 0px auto;">
+    <%= f.submit "دخــــــــول",:class=>"btn btn-large btn-primary" %>
   </div>
 <% end %>
 
-<p>عضو جديد ؟ <%= link_to "سجل الآن ", signup_path %></p>
+<p class="microposts">عضو جديد ؟ <%= link_to "سجل الآن ", signup_path %></p>
 
-<br />
- <% flash.each do |key, value| %>
-          <div class="flash <%= key %>"><p class="o1">المعلومات المدخولة لاتسمح بلدخول</p> </div>
-        <% end %>
+
+    </td>
+</table>
+</div></div>

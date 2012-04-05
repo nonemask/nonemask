@@ -1,27 +1,50 @@
-<table class="profile">
+
+	<div class="">
+<center>
+   <div class="holder_content1">
+		<section>
+
+	</section>
+	
+
+		</div>
+		
+   <div class="holder_content">
+ 
+       <section class="group7">
+       	<h3>اخر العروض للاجهزة</h3>
+       	<br />
+ <% if signed_in? %>
+    <% if admin_check? %>
+   <table class="profile1">
   <tr>
    
-    <td class="sidebar1 round">
-     <strong>    <%= link_to "اضافة شريط",new_sound_path%>
+    <td class=" round" >
+     <strong>    <%= link_to "اضافة لابتوب",new_sound_path%>
 </strong>
      
     </td>
   </tr>
-</table><br /><br />
+</table>
+<% end %>
 
-<table class="profile" summary="Profile information">
+<% end %>
+<table class="o" summary="Profile information">
   <tr>
-    <td class="main">
-                
-        <table class="microposts" summary="User microposts">         	  <% @sound.each do |sound| %>
+    <td >
+                 <%= will_paginate @sound ,:class=>"apple_pagination",:previous_label=>"",:next_label=>""%>
+
+        <table class="microposts" summary="User microposts" style="text-align: center;width: 460px; color:#A9E7FF">  <% @sound.each do |sound| %>
 
         	<tr>
-  <td class="micropost">
-<span class="content"><h5><%= link_to sound.name, sound %></h5></span> 
-<span class="content"> <%=  sound.content %></span> <br />
+  <td class="micropost"style="text-align: right;font-size: 12px;width: 450px;" class="microposts">
+<span class="content"><p class="microposts"style="text-align: center;"><%= link_to sound.name, sound %></p></span> 
+<span class="content"><p style="text-align: right;font-size: 12px;" class="o"> <%=  sound.content %><></span> <br />
 
  <span class="timestamp">
-      Posted <%= time_ago_in_words(sound.created_at) %> ago.||<%= sound.created_at %>
+ 	
+           	<p style="text-align: right;font-size: 12px;" class="o"> <span style="float: left;"><%= sound.created_at %></span> </p>
+
     </span>
  <span class="content">  
  	      <% if signed_in? %>
@@ -36,16 +59,33 @@
   <% end %></span> 
   </td>
    
-    	<td class="gravatar">
-    		<% for aset in  sound.asets%>
-    		<%= link_to image_tag(aset.image.url(:thumb)),"#"%>
-    		<% end %>
+    	<td class="gravatar" style="opacity: 0.9;">
+    		<% x= Sound.find(sound.id) %>
+    			    		<%= link_to image_tag(x.asets.first.image.url(:thumb)),sound%>
+
    		<br />
   </td><% end %>
   </tr> 
-  
-        </table>                <%= will_paginate @sound %>
-
+        </table>              
     </td>
   
 </table>
+
+   	</section>  
+   <section class="group6">
+   	
+   	  <%= image_tag("one1.png", :class=>"o")%>
+  
+
+	</section>
+
+  
+   </div>
+
+   <!--end holder-->
+</center>
+<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+
+<br /><br /><br /><br /><br /><br /><br /><br /></p>
+<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+

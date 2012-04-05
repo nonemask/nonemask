@@ -1,7 +1,4 @@
 
- <% flash.each do |key, value| %>
-          <div class="flash <%= key %>"><p class="o1">أهلاً بك اخي العزيز تمت العملية  بنجاح</p> </div>
-        <% end %>
         <center>
 <% if signed_in? %>
   <table class="front" summary="For signed-in users">
@@ -24,7 +21,7 @@
     <%= f.text_area :content , :size=>"46*44"%>
   </div>
   <div class="actions">
-    <%= f.submit "Submit" %>
+    <%= f.submit "Submit" ,:class=>"btn btn-large btn-primary"%>
   </div>
 <% end %><% end %>
       </td>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title></title>
+    <title>القائم لخدمات الحاسوب</title>
     <%= stylesheet_link_tag    "custom1", media: "all" %>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
@@ -9,9 +9,7 @@
   </head>
   
   <body>
-  	      <% flash.each do |key, value| %>
-        <div class="alert alert-<%= key %>"><%= value %></div>
-      <% end %>
+  	    
     <%= render 'layouts/header' %>
     <div id="back" class="container">
     	<header id="x" class="navbar" >
@@ -20,27 +18,29 @@
 <h3 id="logo1">القــائم</h3>
 </span>	
       <nav>
-        <ul class="nav pull-left">
-         <li><%= link_to "الرئيسية", 	root_path %></li>
-	<li><%= link_to "الصوتيـات", 	sounds_path %></li>
-		<li><%= link_to "البــوم الصور", 	studionames_path %></li>
-
-  <% if signed_in? %>
-  <% if admin_check?   %>
-  <li><%= link_to "حكم اهل البيت", 	hekoms_path %></li>
-	<li><%= link_to "الاعضـاء", 	users_path %></li>
-	<li><%= link_to "رسـائل الاعضاء" , 	admin_user_microposts_path(current_user) %></li>
-		<% end %>
-        <li><%= link_to "الملف الشخصي", current_user %></li>
-      <% end %>
+        <ul class="nav pull-left  o">
+         
+           	<li><%= link_to "من نحن", 	aboutus_path %></li>
+     
       <% if signed_in? %>
-       <li><%= link_to "ارسل رسالة ", new_user_micropost_path(current_user) if !admin_check?%></li>
+      
+        <li><%= link_to "تسجيل الخروج", signout_path, method: :delete , confirm: "هل انت متأكـد ؟"%></li>
        <li><%= link_to "رسائلي ", user_microposts_path(current_user) if !admin_check?%></li>
-        <li><%= link_to "تسجيل الخروج", signout_path, method: :delete , confirm: "You sure?"%></li>
         
       <% else %>
         <li><%= link_to "تسجيل الدخول", signin_path %></li>
       <% end %>
+            <% if signed_in? %>
+
+       <% if admin_check?   %>
+  
+	<li><%= link_to "الاعضـاء", 	users_path %></li>
+	<li><%= link_to "رسـائل الاعضاء" , 	admin_user_microposts_path(current_user) %></li>
+		<% end %>
+		 <% end %>
+	<li><%= link_to "عروض الاجهزة", 	sounds_path %></li>
+	<li><%= link_to "خدماتـنا", 	services_path %></li>
+         <li><%= link_to "الرئيسية", 	root_path %></li>
 </ul>
       </nav>
               <span class="nav pull-right">
@@ -48,10 +48,25 @@
 </span>
 </header>
 
+  <% flash.each do |key, value| %>
+ <%if :error ==  key %>
 
+        <div class="alert alert-<%= key %>" style="margin:0px auto ;text-align: center;opacity: 0.2; ">
+      	 لم تتم المدخولات بلطريقة المستوجبة لدخول حاول مرة اخرى
+<%end%>
+<% if :success == key %>
+<div class="alert alert-<%= key %>" style="margin:0px auto ;text-align: center;opacity: 0.2; ">
+	تمت المعلومات بنجاح
+<%end%>
+<% if :notice == key %>
+<div class="alert alert-<%= key %>" style="margin:0px auto ;text-align: center;opacity: 0.2; ">
+لايسمح تخطي المنطقه يرجى الدخول
+<%end%>
+</div>
+      <% end %>
       <%= yield %>
       <%= render 'layouts/footer' %>
-      <%= debug(params) %>
+     
     </div>
   </body>
 </html>
